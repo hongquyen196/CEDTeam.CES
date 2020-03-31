@@ -1,20 +1,25 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.App">
+      <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
+      <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
+    </PackageReference>
+    <PackageReference Include="Mapster" Version="4.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
   </ItemGroup>
-
 
   <ItemGroup>
     <ProjectReference Include="..\CEDTeam.CES.Core\CEDTeam.CES.Core.csproj" />
     <ProjectReference Include="..\CEDTeam.CES.Infrastructure\CEDTeam.CES.Infrastructure.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Compile Remove="Models\HotKey\TikiTopProductModel %28copy%29.cs" />
+    <Compile Remove="Models\HotKey\TikiHotSearchModel %28copy%29.cs" />
+  </ItemGroup>
 </Project>
